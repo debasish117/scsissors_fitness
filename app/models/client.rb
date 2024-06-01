@@ -6,4 +6,5 @@ class Client < ApplicationRecord
 
   accepts_nested_attributes_for :contact_info, update_only: true
 
+  scope :active_subscription, -> (client) { client.subscription_plans.select {|sub| sub.status_active? } }
 end
